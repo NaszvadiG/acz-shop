@@ -1,4 +1,8 @@
 uploads/categories/*
+!uploads/categories/.gitkeep
 uploads/editor/*
+!uploads/editor/.gitkeep
 uploads/products/*
+!uploads/products/.gitkeep
 assets/thumbs/*
+!assets/thumbs/.gitkeep
