@@ -16,6 +16,26 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="<?php echo base_url(); ?>assets/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+      tinymce.init({
+        selector: '#description',
+        theme: 'modern',
+        relative_urls: false,
+        remove_script_host : false,
+        plugins: [
+        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+        'save table contextmenu directionality emoticons template paste textcolor responsivefilemanager'
+        ],
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons | responsivefilemanager',
+        image_advtab: true ,
+        external_filemanager_path:"<?php echo base_url(); ?>assets/filemanager/",
+        filemanager_title:"Responsive Filemanager" ,
+        external_plugins: { "filemanager" : "<?php echo base_url(); ?>assets/filemanager/plugin.min.js"}
+      });
+    </script>
   </head>
   <body>
     <?php

@@ -12,6 +12,15 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li id="wowMenu" class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> Produse <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <?php foreach( $categories as $category ){ ?>
+              <?php if( $category['parent_id'] == 0 ){ ?>
+                <li><a href="<?php echo site_url().$category['slug'] ?>"><?=$category['name'] ?></a></li>
+            <?php } } ?>
+          </ul>
+        </li>
         <li><a href="<?=site_url()?>">Home</a></li>
 
         

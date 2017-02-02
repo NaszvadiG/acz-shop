@@ -7,10 +7,13 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$_SESSION['website_settings']['website_name']?></title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?=base_url()?>assets/main.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/lightbox/jquery.lightbox.css">
+
+
+    <link rel="stylesheet" href="<?=base_url()?>assets/acz.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/product.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,32 +42,44 @@
       ?>
 
       <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb">
+            <?php foreach( $breadcrumbs as $breadcrumb ){ ?>
+            <li><a href="<?php echo site_url().$breadcrumb['slug']; ?>"><?=$breadcrumb['name'] ?></a></li>
+            <?php } ?>
+          </ol>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12"><h1><?=$product['name'] ?></h1></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><div class="product-sku">Cod produs: <?=$product['sku'] ?></div></div>
+      </div>
+
+      <div class="row">
         <div class="col-md-7">
           
-          <div class="product">
+          
             
-            <div class="row">
-              <div class="col-md-12">
-                <h3><?=$product['name'] ?></h3>
-              </div>
-            </div>
             
-            <div class="row">
-              <div class="col-md-12">
-                <div class="well">
-                  
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <?=nl2br($product['description']) ?>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="product-price">
+                Pret: <?php echo ( $product['price'] == 0 ) ? $product['price_list'] : $product['price']; ?> Lei
               </div>
             </div>
           </div>
 
-          <pre><?php print_r($product); ?></pre>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="product-description">
+                  <?=nl2br($product['description']) ?>
+                </div>
+              </div>
+            </div>
+         
 
         </div>
         
@@ -74,19 +89,16 @@
           <div class="col-md-5">
             <div class="row">
               <div class="col-md-12">
-                <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>" class="img-responsive">
+                <a href="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>"><img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>" class="img-responsive"></a>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
-              <div class="col-md-4">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
-              <div class="col-md-4">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
+              <?php foreach( $product['pictures'] as $picture ){ ?>
+                <div class="col-md-3">
+                  <a href="<?php echo site_url().'uploads/products/'.$picture['name'] ?>"><img src="<?php echo site_url().'uploads/products/'.$picture['name'] ?>" class="img-responsive"></a>
+                </div>
+              <?php } ?>
+              
             </div>
           </div>
         </div>
@@ -101,8 +113,14 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.js"></script>
+    <script src="<?=base_url()?>assets/lightbox/jquery.lightbox.js"></script>
+    <script>
+       $(function()
+         {
+          $('.gallery a').lightbox(); 
+        });
+    </script>
 
   </body>
 </html>

@@ -30,6 +30,19 @@ class Product_model extends CI_Model{
 			'entity_id' => $product_id
 			]);
 		$pictures = $this->db->get('pictures')->result_array();
+		//remove featured picture from pictures array
+		$index = 0;
+		foreach( $pictures as $picture )
+		{
+			if( $picture['id'] == $product['featured_picture_id'] )
+			{
+				unset($pictures[$index]);
+				$pictures = array_values($pictures);
+				break;
+			}
+			$index++;
+		}
+
 		$product['pictures'] = $pictures;
 		
 		return $product;

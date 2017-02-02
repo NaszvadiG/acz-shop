@@ -60,6 +60,7 @@
             <div class="form-group">
                 <label for="picture">Picture</label>
                 <input type="file" name="picture" id="picture" class="form-control">
+                <span>Recommended 900 x 300px or 3/1 ratio</span>
             </div>
 
           <?php echo validation_errors(); ?>

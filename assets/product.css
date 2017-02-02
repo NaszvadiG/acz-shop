@@ -1,3 +1,16 @@
 .gallery img{
 	padding: 10px;
 }
+
+.product-sku{
+	color: grey;
+}
+
+.product-price{
+	margin-top: 10px;
+	font-size: 150%;
+}
+
+.product-description{
+	margin-top: 10px;
+}

@@ -28,8 +28,29 @@ class Product extends MY_Controller{
 
 		$this->load->model('product_model');
 		$product = $this->product_model->get_product( $product_id );
-		
-		$this->load->view('products/visitator_view', ['product' => $product]);
+
+		//making the breadcrumbs
+		$this->load->model('category_model');
+		//get the product category
+		$category = $this->category_model->get_category($product['category_id']);
+		$breadcrumbs[] = $category;
+		//search for all parent categories
+		while( $category['parent_id'] != 0 )
+		{
+			$category = $this->category_model->get_category($category['parent_id']);
+			$breadcrumbs[] = $category;
+		}
+
+		//reverse the breadcrumbs
+		$breadcrumbs = array_reverse($breadcrumbs);
+
+		$categories = $this->category_model->get_categories();
+
+		$this->load->view('products/visitator_view', [
+			'breadcrumbs' => $breadcrumbs,
+			'product' => $product,
+			'categories' => $categories
+			]);
 	}
 
 	public function create()
