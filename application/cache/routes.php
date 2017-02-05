@@ -16,3 +16,7 @@ $route['masini-de-gatit'] = 'category/visitator_view/11';
 $route['masini-de-gatit-seria-700'] = 'category/visitator_view/12';
 $route['aragaz-profesional-banc-ozti'] = 'product/visitator_view/3';
 $route['masina-de-gatit-cu-cuptor'] = 'product/visitator_view/4';
+$route['gratare'] = 'category/visitator_view/13';
+$route['friteuze'] = 'category/visitator_view/14';
+$route['marmite'] = 'category/visitator_view/15';
+$route['tigai-basculante'] = 'category/visitator_view/16';

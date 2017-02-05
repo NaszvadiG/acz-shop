@@ -32,12 +32,26 @@ class Category extends MY_Controller {
 		$this->load->model('category_model');
 		$this->load->model('product_model');
 		$selected_category = $this->category_model->get_category($category_id);
-		$all_categories = $this->category_model->get_categories();
+		$categories = $this->category_model->get_categories();
 		$products = $this->product_model->get_products_by_category( $category_id );
 
+		//making the breadcrumbs
+		$breadcrumbs[] = $selected_category;
+		//search for all parent categories
+		$index_category = $selected_category;
+		while( $index_category['parent_id'] != 0 )
+		{
+			$index_category = $this->category_model->get_category($index_category['parent_id']);
+			$breadcrumbs[] = $index_category;
+		}
+
+		//reverse the breadcrumbs
+		$breadcrumbs = array_reverse($breadcrumbs);
+
 		$this->load->view('categories/visitator_view',[
+				'breadcrumbs' => $breadcrumbs,
 		        'selected_category' => $selected_category,
-                'all_categories' => $all_categories,
+                'categories' => $categories,
                 'products' => $products
             ]);
 

@@ -7,8 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$_SESSION['website_settings']['website_name']?></title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/bootstrap.css">
 
     <link rel="stylesheet" href="./assets/acz.css">
 
@@ -21,9 +22,12 @@
 
     <style>
       .category{
-        border: 1px solid grey;
-        margin: 10px;
-        background-color: white;
+        border-left: 1px solid #D3D3D3;
+        border-right: 1px solid #D3D3D3;
+        border-bottom: 1px solid #D3D3D3;
+        margin-top: 20px;
+        padding-bottom: 5px;
+        text-align: center;
         display: block;
       }
       .category-picture{
@@ -36,26 +40,31 @@
         font-size: 130%;
       }
       .product{
-        border: 1px solid grey;
-        margin: 10px;
-        background-color: white;
+        border-left: 1px solid #D3D3D3;
+        border-right: 1px solid #D3D3D3;
+        border-bottom: 1px solid #D3D3D3;
+        margin-top: 20px;
         display: block;
+        text-align: center;
       }
       .product-picture{
         height: 190px;
       }
-
       .product-picture img{
         max-height: 190px;
-        margin-left: auto;
-        margin-right: auto;
+      }
+      .product-price{
+        font-size: 150%;
+      }
+      .product-price-currency{
+        font-size: 90%;
       }
 
     </style>
   </head>
   <body>
 
-    <div class="container-fluid">
+    <div class="container">
 
       <div class="row header">
         <div class="col-md-3 logo">
@@ -71,57 +80,66 @@
       require_once(APPPATH.'views/includes/menu_visitator.php');
       ?>
 
-
+      <div class="row">
+        <div class="col-md-12"><h1><?=$selected_category['name']?></h1></div>
+      </div>
 
       <div class="row">
-
-      <!--    sidebar navigation      -->
-        <div class="col-md-4">
-          <ul class="nav nav-pills nav-stacked">
-            <?php foreach( $all_categories as $category ){
-                if( $category['parent_id'] ==  0 ){?>
-                <li role="presentation"><a href="<?php echo site_url().$category['slug']?>"><?=$category['name']?></a></li>
-            <?php }}?>
-          </ul>
+        <div class="col-md-12">
+          <ol class="breadcrumb">
+            <?php foreach( $breadcrumbs as $breadcrumb ){ ?>
+            <li><a href="<?php echo site_url().$breadcrumb['slug']; ?>"><?=$breadcrumb['name'] ?></a></li>
+            <?php } ?>
+          </ol>
         </div>
-<!--          end of sidebar navigation-->
+      </div>
 
-          <div class="col-md-8">
-              <h1>Selected category: <i><?=$selected_category['name']?></i></h1>
 
               <!-- show subcategories -->
+
+              <div class="row">
               
-              <?php $counter = 0; foreach($all_categories as $category){
-                  if($category['parent_id'] == $selected_category['id']){
-                    echo ($counter % 2 == 0) ? '<div class="row">' : ''; ?>
+              <?php foreach($categories as $category){
+                  if($category['parent_id'] == $selected_category['id']){ ?>
 
-                    <div class="col-md-6">
-                    <a href="<?php echo site_url().$category['slug'] ?>">
+                    <div class="col-md-3 col-sm-6">
+                    
                       <div class="category">
+                      <a href="<?php echo site_url().$category['slug'] ?>">
+                      <div class="category-name"><?=$category['name'] ?></div>
                       <div class="category-picture text-center">
-                        <img style="max-height: 150px; max-width: 450px;" src="<?php echo site_url().'uploads/categories/'.$category['picture_name'] ?>" alt="">
-                        </div>
-                        <div class="category-name"><?=$category['name'] ?></div>
-
+                        <img style="max-height: 200px; max-width: 100%;" src="<?php echo site_url().'uploads/categories/'.$category['picture_name'] ?>" alt="">
                       </div>
+                        
                       </a>
+                      </div>
+                      
                     </div>
 
-              <?php echo ($counter % 2 == 1) ? '</div>' : ''; $counter++; }} echo ($counter % 2 == 1) ? '</div>' : ''; ?>
+              <?php }} ?>
+
+              </div>
 
               <!-- end of subcategories -->
 
               <!-- show products -->
 
-              <?php $counter = 0; foreach( $products as $product ){ 
-                echo ($counter % 3 == 0) ? '<div class="row">' : ''; ?>
+              <div class="row">
 
-              <div class="col-md-4">
+              <?php foreach( $products as $product ){ ?>
+
+              <div class="col-md-3 col-sm-6">
 
                 <div class="product">
                   <div class="row product-picture">
                     <div class="col-md-12">
-                      <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>" class="img-responsive">
+                      <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="product-price"><?php echo ( $product['price'] == 0 ) ? $product['price_list'] : $product['price']; ?></span>
+                      <span class="product-price-currency">LEI</span>
                     </div>
                   </div>
                   <div class="row product-name">
@@ -140,16 +158,18 @@
 
               </div>
 
-              <?php echo ($counter % 3 == 2) ? '</div>' : ''; $counter++; } echo ($counter % 3 != 2) ? '</div>' : ''; ?>
+              <?php } ?>
+
+              </div>
 
               <!-- end of products -->
               
-              </div>
+             
 
               
 
               
-          </div>
+          
 
       </div>
 
@@ -164,7 +184,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.js"></script>
 
 
   </body>
