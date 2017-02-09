@@ -84,15 +84,19 @@
         <div class="col-md-12"><h1><?=$selected_category['name']?></h1></div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <ol class="breadcrumb">
-            <?php foreach( $breadcrumbs as $breadcrumb ){ ?>
-            <li><a href="<?php echo site_url().$breadcrumb['slug']; ?>"><?=$breadcrumb['name'] ?></a></li>
-            <?php } ?>
-          </ol>
+      <?php if( count($breadcrumbs) > 0 ){ ?>
+
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb">
+              <?php foreach( $breadcrumbs as $breadcrumb ){ ?>
+              <li><a href="<?php echo site_url().$breadcrumb['slug']; ?>"><?=$breadcrumb['name'] ?></a></li>
+              <?php } ?>
+            </ol>
+          </div>
         </div>
-      </div>
+
+      <?php } ?>
 
 
               <!-- show subcategories -->
@@ -133,7 +137,9 @@
                 <div class="product">
                   <div class="row product-picture">
                     <div class="col-md-12">
-                      <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>">
+                      <a href="<?php echo site_url().$product['slug']; ?>">
+                        <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>">
+                      </a>
                     </div>
                   </div>
                   <div class="row">
@@ -144,12 +150,12 @@
                   </div>
                   <div class="row product-name">
                     <div class="col-md-10 col-md-offset-1">
-                      <?=$product['name'] ?>
+                      <a href="<?php echo site_url().$product['slug']; ?>"><?=$product['name'] ?></a>
                     </div>
                   </div>
                   <div class="row product-footer">
-                    <div class="col-md-2 col-md-offset-9">
-                      <a href="<?php echo site_url().$product['slug']; ?>">Detalii</a>
+                    <div class="col-md-12">
+                      <a href="<?php echo site_url().$product['slug']; ?>" class="btn btn-block btn-primary">Detalii</a>
                     </div>
                   </div>
 

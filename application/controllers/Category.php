@@ -36,7 +36,7 @@ class Category extends MY_Controller {
 		$products = $this->product_model->get_products_by_category( $category_id );
 
 		//making the breadcrumbs
-		$breadcrumbs[] = $selected_category;
+		$breadcrumbs = array();
 		//search for all parent categories
 		$index_category = $selected_category;
 		while( $index_category['parent_id'] != 0 )
