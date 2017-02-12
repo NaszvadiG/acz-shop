@@ -7,12 +7,27 @@
 	color:red;
 }
 
-.product-image{
+.product{
+	border-left: 1px solid #D3D3D3;
+	border-right: 1px solid #D3D3D3;
+	border-bottom: 1px solid #D3D3D3;
+	margin-top: 20px;
+	display: block;
+	text-align: center;
+}
+
+.product-picture{
 	height: 190px;
 }
 
-.product-image img{
+.product-picture img{
 	max-height: 190px;
-	margin-left: auto;
-	margin-right: auto;
+}
+
+.product-price{
+	font-size: 150%;
+}
+
+.product-price-currency{
+	font-size: 90%;
 }

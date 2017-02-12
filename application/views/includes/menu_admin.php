@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -17,6 +17,7 @@
         <li><a href="<?=site_url('dashboard')?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
         <li><a href="<?=site_url('category')?>">Categories</a></li>
         <li><a href="<?=site_url('product')?>">Products</a></li>
+        <li><a href="<?=site_url('marketing')?>">Marketing</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

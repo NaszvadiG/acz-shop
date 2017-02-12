@@ -7,8 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$_SESSION['website_settings']['website_name']?></title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/bootstrap.css">
 
 
     <link rel="stylesheet" href="./assets/slick/slick.css">
@@ -74,92 +75,60 @@
       require_once(APPPATH.'views/includes/menu_visitator.php');
       ?>
 
+      <?php foreach( $groups as $group ){ ?>
+
       <div class="row">
         <div class="col-md-12">
-          <h3>Produse recomandate</h3>
+          <h3><?=$group['name']?></h3>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-4">
+      <?php foreach( $group['products'] as $product ){ ?>
+       <div class="col-md-3 col-sm-6">
 
-          <div class="product">
-            <div class="row product-image">
-              <div class="col-md-12">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
+        <div class="product">
+          <div class="row product-picture">
+            <div class="col-md-12">
+              <a href="<?php echo site_url().$product['slug']; ?>">
+                <img src="<?php echo site_url().'uploads/products/'.$product['featured_picture_name']; ?>">
+              </a>
             </div>
-            <div class="row product-name">
-              <div class="col-md-10 col-md-offset-1">
-                Vitrina pentru ingrediente
-              </div>
-            </div>
-            <div class="row product-footer">
-              <div class="col-md-2 col-md-offset-9">
-                <a href="#">Detalii</a>
-              </div>
-            </div>
-
-
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span class="product-price"><?php echo ( $product['price'] == 0 ) ? $product['price_list'] : $product['price']; ?></span>
+              <span class="product-price-currency">LEI</span>
+            </div>
+          </div>
+          <div class="row product-name">
+            <div class="col-md-10 col-md-offset-1">
+              <a href="<?php echo site_url().$product['slug']; ?>"><?=$product['name'] ?></a>
+            </div>
+          </div>
+          <div class="row product-footer">
+            <div class="col-md-12">
+              <a href="<?php echo site_url().$product['slug']; ?>" class="btn btn-block btn-primary">Detalii</a>
+            </div>
+          </div>
+
 
         </div>
 
-        <div class="col-md-4">
-
-          <div class="product">
-            <div class="row product-image">
-              <div class="col-md-12">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
-            </div>
-            <div class="row product-name">
-              <div class="col-md-10 col-md-offset-1">
-                Vitrina pentru ingrediente
-              </div>
-            </div>
-            <div class="row product-footer">
-              <div class="col-md-2 col-md-offset-9">
-                <a href="#">Detalii</a>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-          <div class="product">
-            <div class="row product-image">
-              <div class="col-md-12">
-                <img src="http://placehold.it/1000x500" class="img-responsive">
-              </div>
-            </div>
-            <div class="row product-name">
-              <div class="col-md-10 col-md-offset-1">
-                Vitrina pentru ingrediente
-              </div>
-            </div>
-            <div class="row product-footer">
-              <div class="col-md-2 col-md-offset-9">
-                <a href="#">Detalii</a>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
       </div>
+      <?php } ?>
+    </div>
+
+      <?php } ?>
+
+
 
     </div><!-- end of container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.js"></script>
 
     <script type="text/javascript" src="./assets/slick/slick.js"></script>
 
