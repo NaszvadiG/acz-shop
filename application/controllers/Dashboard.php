@@ -7,6 +7,8 @@ class Dashboard extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->user_is_logged_in('dashboard');
 	}
 
 	public function index()

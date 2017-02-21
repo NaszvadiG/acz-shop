@@ -10,6 +10,8 @@ class Product extends MY_Controller{
 
 	public function index()
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->model('product_model');
 		$products = $this->product_model->get_products();
 
@@ -55,6 +57,8 @@ class Product extends MY_Controller{
 
 	public function create()
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -77,6 +81,8 @@ class Product extends MY_Controller{
 
 	public function edit( $product_id = null )
 	{
+		$this->user_is_logged_in('product');
+
 		if( ($product_id == null) or (is_numeric($product_id) == false) )
 		{
 			redirect('product/index');
@@ -120,6 +126,8 @@ class Product extends MY_Controller{
 
 	public function add_to_category( $product_id )
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->model('category_model');
 		$this->load->model('product_model');
 
@@ -134,6 +142,8 @@ class Product extends MY_Controller{
 
 	public function add_to_category_action( $product_id, $category_id )
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->model('product_model');
 		$this->product_model->add_product_to_category($product_id, $category_id);
 		redirect('product/index');
@@ -141,6 +151,8 @@ class Product extends MY_Controller{
 
 	public function upload_pictures( $product_id )
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->helper('form');
 		$this->load->model('product_model');
 
@@ -153,11 +165,11 @@ class Product extends MY_Controller{
 
 	public function upload_pictures_action()
 	{
+		$this->user_is_logged_in('product');
+
 		$config['upload_path']          = './uploads/products/';
 		$config['allowed_types']        = 'jpeg|jpg|png';
-		$config['max_size']             = 5000;
-		$config['max_width']            = 5000;
-		$config['max_height']           = 5000;
+		$config['max_size']             = 500;
 
 		$this->load->library('upload', $config);
 
@@ -175,6 +187,8 @@ class Product extends MY_Controller{
 
 	public function set_default_picture( $product_id, $picture_id )
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->model('product_model');
 		$this->product_model->set_default_picture($product_id, $picture_id);
 		
@@ -183,6 +197,8 @@ class Product extends MY_Controller{
 	
 	public function delete_picture( $product_id, $picture_id )
 	{
+		$this->user_is_logged_in('product');
+
 		$this->load->model('picture_model');
 		$this->picture_model->delete_picture($picture_id);
 		

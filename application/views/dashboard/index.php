@@ -22,6 +22,8 @@
       require_once(APPPATH.'views/includes/menu_admin.php');
      ?>
     <h1>Hello, world!</h1>
+    Session data
+    <pre><?php print_r($_SESSION); ?></pre>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

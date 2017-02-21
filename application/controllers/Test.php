@@ -7,12 +7,11 @@ class Test extends CI_Controller{
 		parent::__construct();
 	}
 
-	public function test()
-	{
-		$this->load->model('category_model');
-		$category = $this->category_model->get_categories();
-		echo "<pre>";
-		print_r($category);
-	}
+	// public function test()
+	// {
+	// 	$this->load->model('user_model');
+	// 	$this->user_model->create_user();
+		
+	// }
 
 }

@@ -21,6 +21,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?=site_url('user/logout')?>">Logout</a></li>
         <li><a href="<?=site_url()?>">Shop</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

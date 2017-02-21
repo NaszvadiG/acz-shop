@@ -12,6 +12,8 @@ class Category extends MY_Controller {
 
 	public function index()
 	{
+		$this->user_is_logged_in('category');
+
 		$this->load->model('category_model');
 		$categories = $this->category_model->get_categories();
 
@@ -62,6 +64,8 @@ class Category extends MY_Controller {
 
 	public function create( $parent_id = null )
 	{
+		$this->user_is_logged_in('category');
+
 		if( is_null($parent_id) or !is_numeric($parent_id) )
 		{
             $this->session->set_flashdata('error', '<strong>Error:</strong> Method <i>create</i> doesn\'t have <i>parent_id</i> set.');
@@ -94,9 +98,7 @@ class Category extends MY_Controller {
     	{
             $config['upload_path']          = './uploads/categories/';
             $config['allowed_types']        = 'jpeg|jpg|png';
-            $config['max_size']             = 5000;
-            $config['max_width']            = 5000;
-            $config['max_height']           = 5000;
+            $config['max_size']             = 500;
 
             $this->load->library('upload', $config);
 
@@ -119,6 +121,8 @@ class Category extends MY_Controller {
 
 	public function edit( $category_id = null )
 	{
+		$this->user_is_logged_in('category');
+
 		if( is_null($category_id) or !is_numeric($category_id) )
 		{
             $this->session->set_flashdata('error', '<strong>Error:</strong> Method <i>edit</i> doesn\'t have <i>category_id</i> set.');
@@ -159,9 +163,7 @@ class Category extends MY_Controller {
 
             $config['upload_path']          = './uploads/categories/';
             $config['allowed_types']        = 'jpeg|jpg|png';
-            $config['max_size']             = 5000;
-            $config['max_width']            = 5000;
-            $config['max_height']           = 5000;
+            $config['max_size']             = 500;
 
             $this->load->library('upload', $config);
 
